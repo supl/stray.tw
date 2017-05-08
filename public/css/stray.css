@@ -1,0 +1,28 @@
+img, video, embed, object {
+    max-width: 100%;
+
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container::after {
+  content: '';
+  flex-grow: 999999999;
+}
+
+.image_container {
+  flex-grow: 1;
+  margin: 2px;
+  height: 250px;
+}
+
+.image_container img {
+  height: 250px;
+  object-fit: cover;
+  max-width: 100%;
+  min-width: 100%;
+  vertical-align: bottom;
+}

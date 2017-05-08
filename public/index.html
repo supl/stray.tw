@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>流浪動物牆</title>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="流浪動物牆" />
+<meta property="og:description" content="台灣行政院農委會流浪動物開放資料集合" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="http://www.stray.tw/image/snapshot.jpg" />
+<meta property="og:url" content="http://www.stray.tw" />
+<link href="css/stray.css" rel="stylesheet" />
+</head>
+
+<body>
+<div class="container" id="container"></div>
+<script src="js/jquery.min.js"></script>
+<script src="js/mustache.min.js"></script>
+<script src="js/stray.js"></script>
+<script>
+$(function() {
+    $(window).on('scroll', function() {
+        var id = 0;
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+            id = $("#container").data("last_id");
+            $.get("animals?id=" + id, function (animals) {
+                animals.forEach(function (animal) {
+                    var container = $("#container");
+                    container.append(Stray.HTMLGenerator.Thumbnail(
+                        {
+                            album_file: animal.album_file,
+                        }
+                    ));
+                    container.data("last_id", animal.id);
+                });
+            });
+        }
+    }).scroll();
+});
+</script>
+</body>
+
+</html>
