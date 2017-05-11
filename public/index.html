@@ -21,17 +21,15 @@
 <script src="js/stray.js"></script>
 <script>
 $(function() {
-    $("#container").data("last_id", 0);
+    var last_id = 0;
     var promise = new $.Deferred().resolve();
     $(window).on('scroll', function() {
-        var id = 0;
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
             var container = $("#container");
             if (promise.state() !== "pending") {
-                id = container.data("last_id");
-                $.get("animals?id=" + id, function (animals) {
+                promise = $.get("animals?id=" + last_id, function (animals) {
                     animals.forEach(function (animal) {
-                        container.data("last_id", animal.id);
+                        last_id = animal.id;
                         container.append(Stray.HTMLGenerator.Thumbnail(
                             {
                                 album_file: animal.album_file,
