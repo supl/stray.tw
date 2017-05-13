@@ -34,4 +34,24 @@ $app->get('/', function ($request, $response, $args) {
         ->withBody(new Stream(fopen("index.html", "r")));
 });
 
+$app->get('/animals/{animal_id}', function ($request, $response, $args) {
+    $animal_id = $request->getAttribute('animal_id');
+    $pdo = new PDO(getenv('MYSQL_DSN'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'));
+    $statement = $pdo->prepare('SELECT * FROM animal WHERE animal_id = ?');
+    $statement->execute([$animal_id,]);
+    $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+    if ($result === false) {
+        return $response->withStatus(404);
+    }
+
+    $format = $request->getQueryParam('format', 'html');
+    if ($format === 'json') {
+        return $response->withJson($result);
+    }
+
+    $response->getBody()->write("hello");
+    return $response->withHeader('Content-type', 'text/html');
+});
+
 $app->run();
