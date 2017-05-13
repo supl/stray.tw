@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>流浪動物牆</title>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+<div>
+    <img src={{ animal['album_file'] }}>
+</div>
+<div>
+    <table>
+        <tr><td>動物編號</td><td>{{ animal['animal_id'] }}</td></tr>
+        <tr><td>種類</td><td>{{ animal['animal_kind'] }}</td></tr>
+        <tr><td>性別</td><td>{{ animal['animal_sex'] }}</td></tr>
+        <tr><td>體型</td><td>{{ animal['animal_bodytype'] }}</td></tr>
+        <tr><td>毛色</td><td>{{ animal['animal_colour'] }}</td></tr>
+        <tr><td>年紀</td><td>{{ animal['animal_age'] }}</td></tr>
+        <tr><td>是否絕育</td><td>{{ animal['animal_sterilization'] }}</td></tr>
+        <tr><td>已施打疫苗</td><td>{{ animal['animal_bacterin'] }}</td></tr>
+        <tr><td>狀態</td><td>{{ animal['animal_status'] }}</td></tr>
+        <tr><td>開放認養時間</td><td>{{ animal['animal_opendate'] }}</td></tr>
+        <tr><td>所在地</td><td>{{ animal['animal_place'] }}</td></tr>
+        <tr><td>收容所名稱</td><td>{{ animal['shelter_name'] }}</td></tr>
+        <tr><td>收容所地址</td><td>{{ animal['shelter_address'] }}</td></tr>
+        <tr><td>收容所電話</td><td>{{ animal['shelter_tel'] }}</td></tr>
+        <tr><td>備註</td><td>{{ animal['animal_remark'] }}</td></tr>
+    </table>
+</div>
+
+</body>
+
+</html>
