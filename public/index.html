@@ -30,11 +30,7 @@ $(function() {
                 promise = $.get("animals?id=" + last_id, function (animals) {
                     animals.forEach(function (animal) {
                         last_id = animal.id;
-                        container.append(Stray.HTMLGenerator.Thumbnail(
-                            {
-                                album_file: animal.album_file,
-                            }
-                        ));
+                        container.append(Stray.HTMLGenerator.Thumbnail(animal));
                     });
                 });
             }
