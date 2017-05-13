@@ -50,7 +50,10 @@ $app->get('/animals/{animal_id}', function ($request, $response, $args) {
         return $response->withJson($result);
     }
 
-    $response->getBody()->write("hello");
+    $loader = new Twig_Loader_Filesystem(__DIR__ . '/template');
+    $twig = new Twig_Environment($loader);
+    $response->getBody()->write($twig->load('animal.html')->render(['animal' => $result,]));
+
     return $response->withHeader('Content-type', 'text/html');
 });
 
