@@ -20,7 +20,7 @@ $app = new App();
 $app->get('/animals', function ($request, $response, $args) {
     $id = $request->getQueryParam("id", 0);
     $pdo = new PDO(getenv('MYSQL_DSN'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'));
-    $statement = $pdo->prepare('SELECT * from animal where id > ? order by id limit 10');
+    $statement = $pdo->prepare('SELECT * from animal where id > ? and deleted_at = 0 order by id limit 10');
     $statement->execute([$id,]);
 
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
