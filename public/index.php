@@ -52,7 +52,8 @@ $app->get('/animals/{animal_id}', function ($request, $response, $args) {
 
     $loader = new Twig_Loader_Filesystem(__DIR__ . '/template');
     $twig = new Twig_Environment($loader);
-    $response->getBody()->write($twig->load('animal.html')->render(['animal' => $result,]));
+    $template = $twig->load('animal.html');
+    $response->getBody()->write($template->render(['animal' => $result,]));
 
     return $response->withHeader('Content-type', 'text/html');
 });
